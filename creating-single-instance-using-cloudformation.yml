@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create three Amazon EC2 instances'
+
+Resources:
+  Instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-04823729c75214919  # Replace with your desired AMI ID
+      KeyName: Learning-VPC-Key  # Replace with your EC2 key pair name
+      NetworkInterfaces:
+        - DeviceIndex: 0 
+          GroupSet:
+            - sg-0363f560835634500  # Replace with your desired security group ID (GREEN SG)
+          SubnetId: subnet-03ea038cb3613eb5e  # Replace with the ID of the subnet you created (GREEN Public SUBNET !)
+          AssociatePublicIpAddress: true   # This property enables the assignment of a public IP
